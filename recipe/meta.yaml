@@ -27,8 +27,6 @@ requirements:
     - openssl 1.0.2r
     - zlib
   run:
-    - openssl 1.0.2r
-    - zlib
     - perl
 
 test:
