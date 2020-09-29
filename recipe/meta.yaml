@@ -10,7 +10,7 @@ source:
   sha256: a34bba682a252c35f67cbf25873dd04a4acb60eafef6f99317e1386331fe737a
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage('gct', max_pin='x.x') }}
@@ -22,18 +22,23 @@ requirements:
     - automake
     - make
     - pkg-config
-    - libtool
   host:
     - openssl
     - zlib
+    - libtool
   run:
     - perl
+    # Seems well behaved
+    # https://abi-laboratory.pro/?view=timeline&l=libtool
+    - {{ pin_compatible("libtool") }}
 
 test:
   commands:
+    - ls -lah $PREFIX/bin
+    - sleep 5
     - globus-domainname
     - globus-gass-cache -dirs
-    - which globus-gass-cache-destroy
+    # - which globus-gass-cache-destroy
     - globus-job-status -help
     - globus-gass-cache-util -help
     - globus-gass-server -help
@@ -47,7 +52,7 @@ test:
     - globus-job-submit -help
     - globus-makefile-header -help
     - globus-sh-exec -version
-    - which globus-url-copy
+    # - which globus-url-copy
     - globus-version
     - globus-xioperf -help
     - globusrun -help
@@ -55,7 +60,7 @@ test:
     - grid-ca-package -help
     - grid-ca-sign -help
     - grid-cert-diagnostics
-    - which grid-cert-info
+    # - which grid-cert-info
     - grid-cert-request -help
     - grid-change-pass-phrase -help
     - grid-proxy-destroy -help
@@ -64,10 +69,10 @@ test:
     - touch /tmp/example_file
     - gsiscp /tmp/example_file /tmp/example_file_123456
     - rm /tmp/example_file /tmp/example_file_123456
-    - which gsisftp
-    - which gsissh
-    - which gsissh-add
-    - which gsissh-agent
+    # - which gsisftp
+    # - which gsissh
+    # - which gsissh-add
+    # - which gsissh-agent
     - gsissh-keygen -f /tmp/examplekey -P asdadasdas
     - gsissh-keyscan -f /tmp/examplekey
     - rm /tmp/examplekey /tmp/examplekey.pub
