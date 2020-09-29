@@ -32,11 +32,14 @@ requirements:
 test:
   commands:
     - ls -lah $PREFIX/bin
-    - file $PREFIX/bin/globus-gass-cache-destroy
+    - sleep 5
     - globus-domainname
     - globus-gass-cache -dirs
-    - file $PREFIX/bin/globus-gass-cache-destroy
+    - sleep 5
+    - ls -lah $PREFIX/bin
+    - sleep 5
     - cat $PREFIX/bin/globus-gass-cache-destroy
+    - sleep 5
     - which globus-gass-cache-destroy
     - globus-job-status -help
     - globus-gass-cache-util -help
