@@ -31,6 +31,7 @@ requirements:
 
 test:
   commands:
+    - ls $PREFIX/bin
     - globus-domainname
     - globus-gass-cache -dirs
     - which globus-gass-cache-destroy
