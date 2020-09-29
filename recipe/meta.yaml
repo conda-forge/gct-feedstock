@@ -49,7 +49,7 @@ test:
     - globus-job-submit -help
     - globus-makefile-header -help
     - globus-sh-exec -version
-    - which globus-url-copy
+    # - which globus-url-copy
     - globus-version
     - globus-xioperf -help
     - globusrun -help
@@ -57,7 +57,7 @@ test:
     - grid-ca-package -help
     - grid-ca-sign -help
     - grid-cert-diagnostics
-    - which grid-cert-info
+    # - which grid-cert-info
     - grid-cert-request -help
     - grid-change-pass-phrase -help
     - grid-proxy-destroy -help
@@ -66,10 +66,10 @@ test:
     - touch /tmp/example_file
     - gsiscp /tmp/example_file /tmp/example_file_123456
     - rm /tmp/example_file /tmp/example_file_123456
-    - which gsisftp
-    - which gsissh
-    - which gsissh-add
-    - which gsissh-agent
+    # - which gsisftp
+    # - which gsissh
+    # - which gsissh-add
+    # - which gsissh-agent
     - gsissh-keygen -f /tmp/examplekey -P asdadasdas
     - gsissh-keyscan -f /tmp/examplekey
     - rm /tmp/examplekey /tmp/examplekey.pub
