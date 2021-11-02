@@ -10,7 +10,7 @@ source:
   sha256: a34bba682a252c35f67cbf25873dd04a4acb60eafef6f99317e1386331fe737a
 
 build:
-  number: 2
+  number: 3
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage('gct', max_pin='x.x') }}
