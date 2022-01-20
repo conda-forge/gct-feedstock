@@ -23,6 +23,7 @@ requirements:
     - automake
     - make
     - pkg-config
+    - sed
   host:
     - openssl
     - zlib
