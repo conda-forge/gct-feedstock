@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Get an updated config.sub and config.guess
-find . -name build-aux -type d -print -exec cp "$BUILD_PREFIX"/share/gnuconfig/config.* {} \;
+find . -name config.sub -print -exec cp "$BUILD_PREFIX"/share/gnuconfig/config.sub {} \;
+find . -name config.guess -print -exec cp "$BUILD_PREFIX"/share/gnuconfig/config.guess {} \;
 set -euo pipefail
 IFS=$'\n\t'
 
