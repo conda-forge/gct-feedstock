@@ -27,6 +27,7 @@ requirements:
     - openssl
     - zlib
     - libtool
+    - libedit
   run:
     - perl
     # Seems well behaved
