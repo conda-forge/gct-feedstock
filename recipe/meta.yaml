@@ -8,8 +8,6 @@ package:
 source:
   url: https://repo.gridcf.org/gct6/sources/gct-{{ version }}.tar.gz
   sha256: bd1c12a918d8a505cb55e8ed4110e0fe49cfff7382a4be4f57b78f61af42daa3
-  patches:
-    - 0001-Remove-gssapi.h.patch
 
 build:
   number: 0
