@@ -31,7 +31,6 @@ requirements:
     - zlib
     - libtool
     - libedit
-    - krb5
   run:
     - perl
     # Seems well behaved
@@ -80,7 +79,6 @@ test:
     # - which gsissh-add
     # - which gsissh-agent
     - gsissh-keygen -f /tmp/examplekey -P asdadasdas
-    - test ! -f $PREFIX/include/globus/gssapi.h
 
 about:
   home: https://gridcf.org
