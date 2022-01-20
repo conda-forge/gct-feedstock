@@ -13,10 +13,11 @@ build:
   number: 2
   skip: true  # [win]
   run_exports:
-    - {{ pin_subpackage('gct', max_pin='x.x') }}
+    - {{ pin_subpackage('gct', max_pin='x.x.x') }}
 
 requirements:
   build:
+    - gnuconfig  # [unix]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - automake
