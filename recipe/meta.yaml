@@ -78,8 +78,6 @@ test:
     # - which gsissh-add
     # - which gsissh-agent
     - gsissh-keygen -f /tmp/examplekey -P asdadasdas
-    - gsissh-keyscan -f /tmp/examplekey
-    - rm /tmp/examplekey /tmp/examplekey.pub
     - test ! -f $PREFIX/include/globus/gssapi.h
 
 about:
