@@ -14,10 +14,12 @@ sed -i 's@--with-pam @@g' gsi_openssh/source/configure.gnu
 # Fix up the shebangs to use conda's perl
 grep -rlE '/usr/bin/perl' . | xargs -I _ sed -i.bak '1s@/usr/bin/perl@/usr/bin/env perl@' _
 
-if [[ "${target_platform}" = osx-* ]] && [[ "${build_platform}" != "${target_platform}" ]]; then
-  echo Appplying osx cross-compilation hacks
+if [[ "${build_platform}" != "${target_platform}" ]]; then
+  echo Appplying cross-compilation hacks
   export ac_cv_func_regcomp=yes
-  sed -i 's@ host-key @ @g' gsi_openssh/source/Makefile.inn
+  if [[ "${target_platform}" = osx-* ]]; then
+    sed -i 's@ host-key @ @g' gsi_openssh/source/Makefile.in
+  fi
 fi
 
 ./configure \
