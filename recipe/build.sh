@@ -14,11 +14,14 @@ sed -i 's@--with-pam @@g' gsi_openssh/source/configure.gnu
 # Fix up the shebangs to use conda's perl
 grep -rlE '/usr/bin/perl' . | xargs -I _ sed -i.bak '1s@/usr/bin/perl@/usr/bin/env perl@' _
 
+configure_args=""
 if [[ "${build_platform}" != "${target_platform}" ]]; then
   echo Appplying cross-compilation hacks
   export ac_cv_func_regcomp=yes
   if [[ "${target_platform}" = osx-* ]]; then
     sed -i 's@ host-key @ @g' gsi_openssh/source/Makefile.in
+  else
+    configure_args="INSTALL=$(which install) -c --strip-program=$STRIP"
   fi
 fi
 
@@ -26,7 +29,7 @@ fi
     --prefix="${PREFIX}" \
     --includedir="${PREFIX}/include/globus" \
     --libexecdir="${PREFIX}/share/globus" \
-    INSTALL="$(which install) -c --strip-program=$STRIP"
+    "${configure_args}"
 
 make -j${CPU_COUNT}
 make install
