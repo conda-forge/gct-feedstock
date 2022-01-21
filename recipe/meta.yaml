@@ -1,5 +1,5 @@
 {% set name = "gct" %}
-{% set version = "6.2.1550507116" %}
+{% set version = "6.2.1629922860" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,12 @@ package:
 
 source:
   url: https://repo.gridcf.org/gct6/sources/gct-{{ version }}.tar.gz
-  sha256: a34bba682a252c35f67cbf25873dd04a4acb60eafef6f99317e1386331fe737a
+  sha256: bd1c12a918d8a505cb55e8ed4110e0fe49cfff7382a4be4f57b78f61af42daa3
+  patches:
+    - 0001-Fix-openssh-7.2p2-x11.patch-for-macOS.patch  # [osx]
 
 build:
-  number: 2
+  number: 0
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage('gct', max_pin='x.x.x') }}
@@ -23,10 +25,12 @@ requirements:
     - automake
     - make
     - pkg-config
+    - sed
   host:
     - openssl
     - zlib
     - libtool
+    - libedit
   run:
     - perl
     # Seems well behaved
@@ -75,8 +79,6 @@ test:
     # - which gsissh-add
     # - which gsissh-agent
     - gsissh-keygen -f /tmp/examplekey -P asdadasdas
-    - gsissh-keyscan -f /tmp/examplekey
-    - rm /tmp/examplekey /tmp/examplekey.pub
 
 about:
   home: https://gridcf.org
