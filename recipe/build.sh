@@ -25,7 +25,8 @@ fi
 ./configure \
     --prefix="${PREFIX}" \
     --includedir="${PREFIX}/include/globus" \
-    --libexecdir="${PREFIX}/share/globus"
+    --libexecdir="${PREFIX}/share/globus" \
+    INSTALL="$(which install) -c --strip-program=$STRIP"
 
 make -j${CPU_COUNT}
 make install
