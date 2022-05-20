@@ -5,9 +5,6 @@ find . -name config.guess -print -exec cp "$BUILD_PREFIX"/share/gnuconfig/config
 set -euo pipefail
 IFS=$'\n\t'
 
-# Workaround from: https://github.com/gridcf/gct/issues/79#issuecomment-486323795
-( cd gsi_openssh/source; aclocal; autoheader; autoconf )
-
 # Remove pam
 sed -i 's@--with-pam @@g' gsi_openssh/source/configure.gnu
 
