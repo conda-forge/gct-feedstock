@@ -11,9 +11,10 @@ source:
   patches:
     - 0001-Fix-openssh-7.2p2-x11.patch-for-macOS.patch  # [osx]
     - 0001-Fix-TLS-1.3-gridcf-gct-196.patch
+    - 0003-Ignore-unhandled-PEM-sequences.patch
 
 build:
-  number: 2
+  number: 3
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage('gct', max_pin='x.x.x') }}

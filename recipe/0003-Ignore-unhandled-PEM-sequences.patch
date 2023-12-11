@@ -1,0 +1,31 @@
+From ec3a975d7acca565a1b11b7fcaa8607dc453444d Mon Sep 17 00:00:00 2001
+From: Chris Burr <christopher.burr@cern.ch>
+Date: Mon, 11 Dec 2023 13:04:47 +0100
+Subject: [PATCH] Ignore unhandled PEM sequences
+
+---
+ gsi/credential/source/library/globus_gsi_credential.c | 8 --------
+ 1 file changed, 8 deletions(-)
+
+diff --git a/gsi/credential/source/library/globus_gsi_credential.c b/gsi/credential/source/library/globus_gsi_credential.c
+index a40f1d900..28b1763ea 100644
+--- a/gsi/credential/source/library/globus_gsi_credential.c
++++ b/gsi/credential/source/library/globus_gsi_credential.c
+@@ -1025,14 +1025,6 @@ globus_gsi_cred_read_proxy_bio(
+                 goto exit;
+             }
+         }
+-        else
+-        {
+-            GLOBUS_GSI_CRED_OPENSSL_ERROR_RESULT(
+-                result,
+-                GLOBUS_GSI_CRED_ERROR_READING_PROXY_CRED,
+-                (_GCRSL("Unhandled PEM sequence: %s"), name));
+-            goto exit;
+-        }
+         if (save_data)
+         {
+             OPENSSL_free(save_data);
+-- 
+2.39.3 (Apple Git-145)
+
