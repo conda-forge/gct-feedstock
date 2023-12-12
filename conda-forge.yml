@@ -13,4 +13,4 @@ github:
 conda_build:
   pkg_format: '2'
 azure:
-  upload_packages: True
+  store_build_artifacts: True
