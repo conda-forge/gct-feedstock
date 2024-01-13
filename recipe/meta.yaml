@@ -13,6 +13,7 @@ source:
     - 0001-Fix-TLS-1.3-gridcf-gct-196.patch
     - 0003-Ignore-unhandled-PEM-sequences.patch
     - 0004-Handle-OpenSSL-3-ABI-compatibility.patch
+    - 0005-Fix-configure-tests-for-ISO-C99-and-later-do-not-sup.patch
 
 build:
   number: 3
