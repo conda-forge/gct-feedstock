@@ -11,9 +11,12 @@ source:
   patches:
     - 0001-Fix-openssh-7.2p2-x11.patch-for-macOS.patch  # [osx]
     - 0001-Fix-TLS-1.3-gridcf-gct-196.patch
+    - 0003-Ignore-unhandled-PEM-sequences.patch
+    - 0004-Handle-OpenSSL-3-ABI-compatibility.patch
+    - 0005-Fix-configure-tests-for-ISO-C99-and-later-do-not-sup.patch
 
 build:
-  number: 2
+  number: 3
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage('gct', max_pin='x.x.x') }}
@@ -34,6 +37,7 @@ requirements:
     - libedit
   run:
     - perl
+    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
     # Seems well behaved
     # https://abi-laboratory.pro/?view=timeline&l=libtool
     - {{ pin_compatible("libtool") }}

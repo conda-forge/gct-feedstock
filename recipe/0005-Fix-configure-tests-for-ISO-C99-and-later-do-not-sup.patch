@@ -1,0 +1,76 @@
+From 4774c227e3d55901db0946fb368bc81ce704376b Mon Sep 17 00:00:00 2001
+From: Chris Burr <christopher.burr@cern.ch>
+Date: Fri, 12 Jan 2024 12:05:37 +0100
+Subject: [PATCH] Fix configure tests for ISO C99 and later do not support
+ implicit int
+
+---
+ gsi_openssh/source/configure    | 6 +++---
+ gsi_openssh/source/configure.ac | 6 +++---
+ 2 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/configure b/configure
+index 479fe659d..caa7bd68c 100755
+--- a/gsi_openssh/source/configure
++++ b/gsi_openssh/source/configure
+@@ -15465,7 +15465,7 @@ else
+ 
+ #include <mach-o/dyld.h>
+ #include <stdlib.h>
+-main() { if (NSVersionOfRunTimeLibrary("System") >= (60 << 16))
++int main() { if (NSVersionOfRunTimeLibrary("System") >= (60 << 16))
+ 		exit(0);
+ 	else
+ 		exit(1);
+@@ -24794,7 +24794,7 @@ else
+ #include <stdlib.h>
+ #include <string.h>
+ #ifdef HAVE_SNPRINTF
+-main()
++int main()
+ {
+ 	char buf[50];
+ 	char expected_out[50];
+@@ -24811,7 +24811,7 @@ main()
+ 	exit(0);
+ }
+ #else
+-main() { exit(0); }
++int main() { exit(0); }
+ #endif
+ 
+ _ACEOF
+diff --git a/gsi_openssh/source/configure.ac b/gsi_openssh/source/configure.ac
+index f3dd2be10..a88ff0c25 100644
+--- a/gsi_openssh/source/configure.ac
++++ b/gsi_openssh/source/configure.ac
+@@ -677,7 +677,7 @@ case "$host" in
+ 	AC_RUN_IFELSE([AC_LANG_SOURCE([[
+ #include <mach-o/dyld.h>
+ #include <stdlib.h>
+-main() { if (NSVersionOfRunTimeLibrary("System") >= (60 << 16))
++int main() { if (NSVersionOfRunTimeLibrary("System") >= (60 << 16))
+ 		exit(0);
+ 	else
+ 		exit(1);
+@@ -4261,7 +4261,7 @@ dnl test snprintf (broken on SCO w/gcc)
+ #include <stdlib.h>
+ #include <string.h>
+ #ifdef HAVE_SNPRINTF
+-main()
++int main()
+ {
+ 	char buf[50];
+ 	char expected_out[50];
+@@ -4278,7 +4278,7 @@ main()
+ 	exit(0);
+ }
+ #else
+-main() { exit(0); }
++int main() { exit(0); }
+ #endif
+ 		]])], [ true ], [ AC_DEFINE([BROKEN_SNPRINTF]) ],
+ 		AC_MSG_WARN([cross compiling: Assuming working snprintf()])
+-- 
+2.39.3 (Apple Git-145)
+

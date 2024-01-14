@@ -5,6 +5,10 @@ find . -name config.guess -print -exec cp "$BUILD_PREFIX"/share/gnuconfig/config
 set -euo pipefail
 IFS=$'\n\t'
 
+cd gsi_openssh/source
+autoreconf
+cd -
+
 # Remove pam
 sed -i 's@--with-pam @@g' gsi_openssh/source/configure.gnu
 
