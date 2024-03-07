@@ -1,0 +1,180 @@
+From b89fdd60a5a173e3fe21cf814dbbba3ad7d77013 Mon Sep 17 00:00:00 2001
+From: Chris Burr <christopher.burr@cern.ch>
+Date: Thu, 7 Mar 2024 13:26:25 +0100
+Subject: [PATCH 1/2] Remove openssl/fips.h
+
+---
+ gsi_openssh/source/dh.c          | 1 -
+ gsi_openssh/source/kex.c         | 1 -
+ gsi_openssh/source/kexgen.c      | 1 -
+ gsi_openssh/source/kexgexc.c     | 1 -
+ gsi_openssh/source/readconf.c    | 1 -
+ gsi_openssh/source/servconf.c    | 1 -
+ gsi_openssh/source/ssh-ed25519.c | 1 -
+ gsi_openssh/source/ssh-keygen.c  | 1 -
+ gsi_openssh/source/ssh-rsa.c     | 1 -
+ gsi_openssh/source/ssh.c         | 1 -
+ gsi_openssh/source/sshconnect2.c | 1 -
+ gsi_openssh/source/sshd.c        | 1 -
+ gsi_openssh/source/sshkey.c      | 1 -
+ 13 files changed, 13 deletions(-)
+
+diff --git a/gsi_openssh/source/dh.c b/gsi_openssh/source/dh.c
+index c10ca88..73caa89 100644
+--- a/gsi_openssh/source/dh.c
++++ b/gsi_openssh/source/dh.c
+@@ -36,7 +36,6 @@
+ 
+ #include <openssl/bn.h>
+ #include <openssl/dh.h>
+-#include <openssl/fips.h>
+ #include <openssl/evp.h>
+ # if OPENSSL_VERSION_NUMBER >= 0x30000000L
+ #include <openssl/core_names.h>
+diff --git a/gsi_openssh/source/kex.c b/gsi_openssh/source/kex.c
+index 62057fc..e217ce7 100644
+--- a/gsi_openssh/source/kex.c
++++ b/gsi_openssh/source/kex.c
+@@ -39,7 +39,6 @@
+ 
+ #ifdef WITH_OPENSSL
+ #include <openssl/crypto.h>
+-#include <openssl/fips.h>
+ #include <openssl/dh.h>
+ # ifdef HAVE_EVP_KDF_CTX_NEW_ID
+ # include <openssl/kdf.h>
+diff --git a/gsi_openssh/source/kexgen.c b/gsi_openssh/source/kexgen.c
+index f01f456..c0a5c09 100644
+--- a/gsi_openssh/source/kexgen.c
++++ b/gsi_openssh/source/kexgen.c
+@@ -31,7 +31,6 @@
+ #include <stdio.h>
+ #include <string.h>
+ #include <signal.h>
+-#include <openssl/fips.h>
+ 
+ #include "fips_mode_replacement.h"
+ 
+diff --git a/gsi_openssh/source/kexgexc.c b/gsi_openssh/source/kexgexc.c
+index 597c45a..39cd15c 100644
+--- a/gsi_openssh/source/kexgexc.c
++++ b/gsi_openssh/source/kexgexc.c
+@@ -28,7 +28,6 @@
+ 
+ #ifdef WITH_OPENSSL
+ 
+-#include <openssl/fips.h>
+ #include <sys/types.h>
+ 
+ #include <openssl/dh.h>
+diff --git a/gsi_openssh/source/readconf.c b/gsi_openssh/source/readconf.c
+index 9df9955..b543d14 100644
+--- a/gsi_openssh/source/readconf.c
++++ b/gsi_openssh/source/readconf.c
+@@ -39,7 +39,6 @@
+ #include <string.h>
+ #include <stdarg.h>
+ #include <unistd.h>
+-#include <openssl/fips.h>
+ #ifdef USE_SYSTEM_GLOB
+ # include <glob.h>
+ #else
+diff --git a/gsi_openssh/source/servconf.c b/gsi_openssh/source/servconf.c
+index 32557e1..2dd2340 100644
+--- a/gsi_openssh/source/servconf.c
++++ b/gsi_openssh/source/servconf.c
+@@ -38,7 +38,6 @@
+ #include <limits.h>
+ #include <stdarg.h>
+ #include <errno.h>
+-#include <openssl/fips.h>
+ #ifdef HAVE_UTIL_H
+ #include <util.h>
+ #endif
+diff --git a/gsi_openssh/source/ssh-ed25519.c b/gsi_openssh/source/ssh-ed25519.c
+index c3e335a..224e34f 100644
+--- a/gsi_openssh/source/ssh-ed25519.c
++++ b/gsi_openssh/source/ssh-ed25519.c
+@@ -24,7 +24,6 @@
+ 
+ #include <string.h>
+ #include <stdarg.h>
+-#include <openssl/fips.h>
+ 
+ #include "fips_mode_replacement.h"
+ 
+diff --git a/gsi_openssh/source/ssh-keygen.c b/gsi_openssh/source/ssh-keygen.c
+index 78b189f..707ec59 100644
+--- a/gsi_openssh/source/ssh-keygen.c
++++ b/gsi_openssh/source/ssh-keygen.c
+@@ -20,7 +20,6 @@
+ 
+ #ifdef WITH_OPENSSL
+ #include <openssl/evp.h>
+-#include <openssl/fips.h>
+ #include <openssl/pem.h>
+ #include "openbsd-compat/openssl-compat.h"
+ #endif
+diff --git a/gsi_openssh/source/ssh-rsa.c b/gsi_openssh/source/ssh-rsa.c
+index acb6392..8ac822c 100644
+--- a/gsi_openssh/source/ssh-rsa.c
++++ b/gsi_openssh/source/ssh-rsa.c
+@@ -27,7 +27,6 @@
+ #include <openssl/core_names.h>
+ #include <openssl/param_build.h>
+ # endif
+-#include <openssl/fips.h>
+ 
+ #include "fips_mode_replacement.h"
+ 
+diff --git a/gsi_openssh/source/ssh.c b/gsi_openssh/source/ssh.c
+index bcf37db..51e2627 100644
+--- a/gsi_openssh/source/ssh.c
++++ b/gsi_openssh/source/ssh.c
+@@ -77,7 +77,6 @@
+ #include <openssl/evp.h>
+ #include <openssl/err.h>
+ #endif
+-#include <openssl/fips.h>
+ #include "openbsd-compat/openssl-compat.h"
+ #include "openbsd-compat/sys-queue.h"
+ #include "fips_mode_replacement.h"
+diff --git a/gsi_openssh/source/sshconnect2.c b/gsi_openssh/source/sshconnect2.c
+index 6a3a13a..2561b47 100644
+--- a/gsi_openssh/source/sshconnect2.c
++++ b/gsi_openssh/source/sshconnect2.c
+@@ -45,7 +45,6 @@
+ #include <vis.h>
+ #endif
+ 
+-#include <openssl/fips.h>
+ #include "fips_mode_replacement.h"
+ 
+ #include "openbsd-compat/sys-queue.h"
+diff --git a/gsi_openssh/source/sshd.c b/gsi_openssh/source/sshd.c
+index cc5db93..81ce108 100644
+--- a/gsi_openssh/source/sshd.c
++++ b/gsi_openssh/source/sshd.c
+@@ -81,7 +81,6 @@
+ #include <openssl/dh.h>
+ #include <openssl/bn.h>
+ #include <openssl/rand.h>
+-#include <openssl/fips.h>
+ #include "openbsd-compat/openssl-compat.h"
+ #endif
+ #include "fips_mode_replacement.h"
+diff --git a/gsi_openssh/source/sshkey.c b/gsi_openssh/source/sshkey.c
+index be7be22..e674179 100644
+--- a/gsi_openssh/source/sshkey.c
++++ b/gsi_openssh/source/sshkey.c
+@@ -38,7 +38,6 @@
+ #include <openssl/core_names.h>
+ #include <openssl/param_build.h>
+ # endif
+-#include <openssl/fips.h>
+ #endif
+ #include "fips_mode_replacement.h"
+ 
+-- 
+2.39.3 (Apple Git-145)
+

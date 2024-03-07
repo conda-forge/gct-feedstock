@@ -1,0 +1,25 @@
+From ff99438d5dfd941bb57671991f01420b72638eb3 Mon Sep 17 00:00:00 2001
+From: Chris Burr <christopher.burr@cern.ch>
+Date: Thu, 7 Mar 2024 13:28:39 +0100
+Subject: [PATCH 2/2] Fix use of connect_local_xsocket_path on macOS
+
+---
+ gsi_openssh/source/channels.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gsi_openssh/source/channels.c b/gsi_openssh/source/channels.c
+index 7aec82a..d100d52 100644
+--- a/gsi_openssh/source/channels.c
++++ b/gsi_openssh/source/channels.c
+@@ -5196,7 +5196,7 @@ x11_connect_display(struct ssh *ssh)
+ 			debug("x11_connect_display: $DISPLAY is launchd");
+ 
+ 			/* Create a socket. */
+-			sock = connect_local_xsocket_path(path);
++			sock = connect_local_xsocket_path(path, strlen(path));
+ 			if (sock < 0)
+ 				return -1;
+ 
+-- 
+2.39.3 (Apple Git-145)
+

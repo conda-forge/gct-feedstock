@@ -10,9 +10,11 @@ source:
   sha256: c64b2c5a53821a3631a689bc97b7982f3c0800bd60a314da9064d3f59f76c35f
   patches:
     - 0003-Ignore-unhandled-PEM-sequences.patch
+    - 0001-Remove-openssl-fips.h.patch
+    - 0002-Fix-use-of-connect_local_xsocket_path-on-macOS.patch
 
 build:
-  number: 3
+  number: 0
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage('gct', max_pin='x.x.x') }}
