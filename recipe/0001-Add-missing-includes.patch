@@ -1,0 +1,37 @@
+From 2545a0507d579c0f830f704e2b5f65e7d65a1208 Mon Sep 17 00:00:00 2001
+From: Chris Burr <christopher.burr@cern.ch>
+Date: Thu, 7 Mar 2024 14:48:01 +0100
+Subject: [PATCH] Add missing includes
+
+---
+ gsi_openssh/source/ssh-ecdsa.c | 1 +
+ gsi_openssh/source/ssh-rsa.c   | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/gsi_openssh/source/ssh-ecdsa.c b/gsi_openssh/source/ssh-ecdsa.c
+index 148bfc861..f8ad6d764 100644
+--- a/gsi_openssh/source/ssh-ecdsa.c
++++ b/gsi_openssh/source/ssh-ecdsa.c
+@@ -48,6 +48,7 @@
+ #include "sshkey.h"
+ 
+ #include "openbsd-compat/openssl-compat.h"
++#include "ssh-pkcs11.h"
+ 
+ static u_int
+ ssh_ecdsa_size(const struct sshkey *key)
+diff --git a/gsi_openssh/source/ssh-rsa.c b/gsi_openssh/source/ssh-rsa.c
+index acb6392a4..af46259cd 100644
+--- a/gsi_openssh/source/ssh-rsa.c
++++ b/gsi_openssh/source/ssh-rsa.c
+@@ -42,6 +42,7 @@
+ #include "log.h"
+ 
+ #include "openbsd-compat/openssl-compat.h"
++#include "ssh-pkcs11.h"
+ 
+ # if OPENSSL_VERSION_NUMBER >= 0x30000000L
+ static int openssh_RSA_verify(int, const u_char *, size_t, u_char *, size_t, EVP_PKEY *);
+-- 
+2.39.3 (Apple Git-145)
+
