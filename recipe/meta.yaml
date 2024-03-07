@@ -12,6 +12,8 @@ source:
     - 0003-Ignore-unhandled-PEM-sequences.patch
     - 0001-Remove-openssl-fips.h.patch
     - 0002-Fix-use-of-connect_local_xsocket_path-on-macOS.patch
+    - 0001-Disable-ssh-keycat.patch
+    - 0001-Add-missing-includes.patch
 
 build:
   number: 0
