@@ -10,7 +10,6 @@ source:
   sha256: c64b2c5a53821a3631a689bc97b7982f3c0800bd60a314da9064d3f59f76c35f
   patches:
     - 0003-Ignore-unhandled-PEM-sequences.patch
-    - 0005-Fix-configure-tests-for-ISO-C99-and-later-do-not-sup.patch
 
 build:
   number: 3
